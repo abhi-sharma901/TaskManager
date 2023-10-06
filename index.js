@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const routes_user = require("./routes/routes_user");
 const routes_task = require("./routes/routes_task");
 const requestLogger = require("./middleware/requestLogger");
-const { scheduleTask } = require("./backgroundTask/dueDateScheduler");
+const { scheduleTask } = require("./backgroundTask/due_date_scheduler");
 
 const bodyParser = require("body-parser");
 require("dotenv").config(); // Load environment variables from a .env file

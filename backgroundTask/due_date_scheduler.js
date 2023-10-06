@@ -1,6 +1,6 @@
 const cron = require("node-cron");
 const Task = require("../models/Task");
-const sendEmail = require("./sendEmail"); // Import the sendEmail function
+const sendEmail = require("./send_email"); // Import the sendEmail function
 const { model } = require("mongoose");
 
 // Schedule a job to check for due dates every day at midnight
