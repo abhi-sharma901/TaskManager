@@ -42,9 +42,9 @@ Before running the application, make sure you have the following installed:
 
 Create a .env file in the root directory with the following environment variables:
 
-PORT = 3000;
-MONGODB_URL = mongodb+srv://abhinav:abhinav123@cluster0.gzzg1lh.mongodb.net/
-JWT_SECRET_KEY = abhi123
+    PORT = 3000;
+    MONGODB_URL = mongodb+srv://abhinav:abhinav123@cluster0.gzzg1lh.mongodb.net/
+    JWT_SECRET_KEY = abhi123
 
 Usage
 
