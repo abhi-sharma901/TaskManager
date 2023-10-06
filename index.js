@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const routes_user = require("./routes/routes_user");
 const routes_task = require("./routes/routes_task");
 const requestLogger = require("./middleware/requestLogger");
+const { scheduleTask } = require("./backgroundTask/dueDateScheduler");
 
-// const authMiddleware = require('./middleware/authMiddleware');
-// const requestLogger = require('./middleware/requestLogger');
 const bodyParser = require("body-parser");
 require("dotenv").config(); // Load environment variables from a .env file
 
@@ -16,12 +15,11 @@ const port = 3000;
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(requestLogger); // Request logging middleware
 
-// Routes without authentication
 app.use("/users", routes_user);
-
-// Routes requiring authentication
-//app.use(authMiddleware); // Authentication middleware
 app.use("/tasks", routes_task);
+
+//Sending email For due date task Schedule
+scheduleTask();
 
 // MongoDB Connection
 const MONGODB_URL = process.env.MONGODB_URL;

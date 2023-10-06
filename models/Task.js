@@ -1,34 +1,35 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const mongoose = require("mongoose");
 
-const schema_task = new mongoose.Schema({
+const schema_task = new mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
     description: {
-        type: String,
-        trim: true,
+      type: String,
+      trim: true,
     },
     status: {
-        type: String,
-        required: true,
-        default: 'not started',
+      type: String,
+      required: true,
+      default: "not started",
     },
     dueDate: {
-        type: Date
+      type: Date,
     },
     owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User', // Reference to the User collection for ID that is the ownership
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User", // Reference to the User collection for ID that is the ownership
     },
-},{
-    timestamps: true
-});
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Task = mongoose.model('Task', schema_task);
+const Task = mongoose.model("Task", schema_task);
 
 module.exports = Task;

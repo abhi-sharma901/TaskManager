@@ -50,14 +50,8 @@ const getTaskById = async (req, res) => {
 const updateTask = async (req, res) => {
   const taskid = req.params.id;
   const updates = Object.keys(req.body);
-  // {
-  //     title: "title"
-  //     description : "new description",
-  //     status: "new status",
-  //     dueDate: date,
-  //     owner : "asfasfasfasfasf"
-  // }
-  const allowedUpdates = ["description", "status", "dueDate"]; // allowed changes can be done to description and status only
+
+  const allowedUpdates = ["description", "status", "dueDate"]; // allowed changes can be done to description, status and dueDate only
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
