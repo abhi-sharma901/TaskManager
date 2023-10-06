@@ -46,6 +46,7 @@ MONGODB_URL = mongodb+srv://abhinav:abhinav123@cluster0.gzzg1lh.mongodb.net/
 JWT_SECRET_KEY = abhi123
 
 Usage
+
     Authentication
       Users can sign up by sending a POST request to /users/signup.
       Users can log in by sending a POST request to /users/login. This will provide an authentication token.
@@ -58,11 +59,12 @@ Usage
         PATCH: Update a task by ID for the authenticated user.
         DELETE: Delete a task by ID for the authenticated user.
 Database
+
     The application uses MongoDB as the database. User data and tasks are stored in separate collections.
 
 Task Model
-    The task model has the following properties:
-      
+
+    The task model has the following properties:      
       title (String, required): The title of the task.
       description (String): The description of the task.
       status (String, enum: 'in progress', 'completed', 'not started', default: 'not started'): The status of the task.
@@ -70,10 +72,12 @@ Task Model
       owner (ObjectId, reference to User): The user who created the task. 
       
 Middleware
+
     Authentication middleware is used to protect routes that require authentication.
     Request logging middleware logs incoming requests to access.log.
     
 Scheduled Emails
+
     Email reminders are sent to users when a task's due date is near.
 
 
