@@ -24,8 +24,8 @@ const getTask = async (req, res) => {
       owner: req.user._id,
     });
     res.status(200).json({ status: "task fetched", task, count: task.length });
-  } catch (error) {
-    res.status(500).json({ status: "failed", error: error.message });
+  } catch (err) {
+    res.status(500).json({ status: "failed", error: err.message });
   }
 };
 
@@ -43,7 +43,7 @@ const getTaskById = async (req, res) => {
     }
     res.status(200).json({ status: "task fetched", task });
   } catch (err) {
-    res.status(500).json({ status: "failed", error: error.message });
+    res.status(500).json({ status: "failed", error: err.message });
   }
 };
 
@@ -57,7 +57,7 @@ const updateTask = async (req, res) => {
   //     dueDate: date,
   //     owner : "asfasfasfasfasf"
   // }
-  const allowedUpdates = ["description", "status"];
+  const allowedUpdates = ["description", "status", "dueDate"]; // allowed changes can be done to description and status only
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
@@ -83,7 +83,25 @@ const updateTask = async (req, res) => {
       message: "Task Updated Successfully",
     });
   } catch (err) {
-    res.status(500).send({ error: err });
+    res.status(500).send({ error: err.message });
+  }
+};
+
+// delete a task by id
+const deleteTaskById = async (req, res) => {
+  const taskid = req.params.id;
+
+  try {
+    const task = await Task.findOneAndDelete({
+      _id: taskid,
+      owner: req.user._id,
+    });
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+    res.status(200).json({ task, message: "Task Deleted Successfully" });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
   }
 };
 
@@ -92,4 +110,5 @@ module.exports = {
   getTask,
   getTaskById,
   updateTask,
+  deleteTaskById,
 };
